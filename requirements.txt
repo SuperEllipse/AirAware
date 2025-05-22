@@ -4,3 +4,4 @@ crewai-tools==0.42
 python-dotenv==1.1.0
 boto3==1.38.17
 pandas==2.2.3
+pysqlite3-binary==0.5.4

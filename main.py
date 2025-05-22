@@ -28,6 +28,13 @@
 # For more options and help, use:
 # python main.py --help
 
+# added to overcome the ChromaDB / Sqllite issue 
+# "Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0."
+import sys
+__import__('pysqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
 import argparse
 from datetime import datetime, timedelta
 from workflows.airquality_analysis  import create_air_quality_analysis_crew
