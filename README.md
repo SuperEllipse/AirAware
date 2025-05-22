@@ -1,4 +1,4 @@
-# Air Quality Analysis Application
+# AirAware Project
 
 ## Overview
 This project focuses on leveraging Generative AI to address environmental challenges through a multi-agent workflow. Specifically, the application analyzes air quality and integrates it with meteorological data for a comprehensive understanding of environmental trends. The workflow emphasizes the use of open datasets and APIs to create actionable insights as part of the broader **"Data for Good"** initiative.
