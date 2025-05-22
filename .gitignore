@@ -1,0 +1,33 @@
+# Python bytecode
+*.pyc
+__pycache__
+*/__pycache__/
+
+# Virtual environment
+.venv/
+env/
+venv/
+llm-env/ # Based on your previous command prompt (llm-env)
+
+# Editor/IDE specific files
+.idea/      # IntelliJ / PyCharm
+*.sublime-project
+*.sublime-workspace
+.vscode/    # VS Code
+
+# Operating System files
+.DS_Store   # macOS
+Thumbs.db   # Windows
+
+# Jupyter / IPython Notebook
+.ipynb_checkpoints
+
+# Python specific build artifacts
+dist/
+build/
+*.egg-info/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
