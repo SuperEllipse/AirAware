@@ -29,9 +29,19 @@ Retrieves PM10 and PM2.5 levels, compares them with AQI standards, and identifie
 Integrates historical weather data with air quality trends to offer context on meteorological influences.
 
 ### 4. Reporting
-Generates detailed reports combining air quality and weather data for user-defined locations and timeframes.
+Generates detailed report combining air quality and weather data for user-defined locations and timeframes.
 
-## Example Report
+**To Generate a AirAware Report**
+1. From a Cloudera AI Session Launch Terminal
+2. Run the following command to generate a report for default Cities and dates i.e. Chennai, India and New Delhi, India <br>
+`python3 main.py`
+3. To run for a specific set of cities for a specific set of cities, dates, parameters air quality parameters e.g. pm25, pm10 etc <br>
+`python3 main.py --locations 'New York, USA', 'London, UK' --start_date '2025-01-01' --end_date '2025-01-03' --parameters 'pm25' `
+4. To know how to pass parameters<br>
+`python3 main.py --help`
+
+ 
+## Example AirAware Report
 --- Air Quality Analysis Report ---
 ### Comprehensive Air Quality and Weather Report
 
