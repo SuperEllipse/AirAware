@@ -37,7 +37,7 @@ class AirQualityAnalysisTool(BaseTool):
             "name": "bounding_boxes",
             "type": "list[list[float]]",
             "description": (
-                "List of bounding boxes (each as [south, north, west, east]) to analyze air quality for."
+                "List of bounding boxes (each as [List of bounding boxes as [west,  south, east, north]]) to analyze air quality for."
             ),
             "required": True,
         },      
@@ -69,7 +69,7 @@ class AirQualityAnalysisTool(BaseTool):
     def _run(self, bounding_boxes: List[List[float]], locations: List[str], start_date: str, end_date: str, aq_parameters: Optional[List[str]] = None) -> pd.DataFrame:
         """
         Args:
-            bounding_boxes (list): List of bounding boxes as [south, north, west, east].
+            bounding_boxes (list): List of bounding boxes as [List of bounding boxes as [West,  South, East, North].
             locations (list): List of location names corresponding to bounding boxes.            
             start_date (str): Start date for the analysis in YYYY-MM-DD format.
             end_date (str): End date for the analysis in YYYY-MM-DD format.
@@ -89,13 +89,15 @@ class AirQualityAnalysisTool(BaseTool):
 
         # Step 2: Fetch location IDs from OpenAQ
         def get_location_ids(bbox: List[str]) -> List[dict]:
-            url = "https://api.openaq.org/v3/locations?limit=100&page=1&order_by=id&sort_order=asc"
+            URL = "https://api.openaq.org/v3/locations?limit=100&page=1&order_by=id&sort_order=asc"
             params = {
                 "bbox": f"{bbox[0]},{bbox[1]},{bbox[2]},{bbox[3]}",
             }
             headers = {"X-API-Key": get_openaq_api_key()}
-            response = requests.get(url, headers=headers, params=params)
+            print( f"DEBUG : \n params : {params}, \n headers : {headers}")
+            response = requests.get(URL, headers=headers, params=params)
             response.raise_for_status()
+            print("Debug : Response Location Details : ", response.json())
             return response.json().get("results", [])
 
         # Step 3: Fetch data from OpenAQ AWS bucket using boto3
@@ -163,7 +165,8 @@ class AirQualityAnalysisTool(BaseTool):
         all_data = []
         for bbox, location in zip(bounding_boxes, locations):
             try:
-                bbox_openaq_format  = [bbox[1], bbox[0], bbox[3], bbox[2]]         
+                bbox_openaq_format  = [bbox[1], bbox[0], bbox[3], bbox[2]]  
+                print("FORMAT OF BBOX FOR OPENAQ: ", bbox_openaq_format)       
                 location_data = get_location_ids(bbox_openaq_format)
                 location_ids = [loc['id'] for loc in location_data]
                 # Open AQ accepts bounding box in the format west, south, east, north
@@ -192,7 +195,7 @@ tool = BoundingBoxExtractorTool()
 if __name__ == '__main__':
     # Example usage:
     analysis_tool = AirQualityAnalysisTool()
-    locations_to_analyze = [ "New Delhi, India"]
+    locations_to_analyze = [ "New Delhi"]
     parameters_to_analyze=["pm25"]
     bboxes=[]
     for location in locations_to_analyze : 
@@ -201,13 +204,14 @@ if __name__ == '__main__':
         bboxes.append(bbox)
 
 
-    start = "2023-01-01"
-    end = "2023-01-03"
+    start = "2025-01-01"
+    end = "2025-01-03"
     parameters_to_analyze = ["pm25"]
-    print(bboxes)
+
     try:
         
         results_df = analysis_tool.run(bounding_boxes = bboxes,locations=locations_to_analyze, start_date=start, end_date=end, aq_parameters=parameters_to_analyze)
+
         print("\nAggregated Air Quality Data:")
         print(results_df)
     except Exception as e:

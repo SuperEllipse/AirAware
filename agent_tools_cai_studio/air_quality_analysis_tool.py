@@ -22,7 +22,6 @@ import argparse
 import boto3
 from botocore import UNSIGNED
 from botocore.config import Config
-from .utils import get_openaq_api_key
 
 # Constants
 URL = "https://api.openaq.org/v3/locations?limit=100&page=1&order_by=id&sort_order=asc"
@@ -34,7 +33,7 @@ class UserParameters(BaseModel):
 
 
 class ToolParameters(BaseModel):
-    bounding_boxes: List[List[float]] = Field(description="List of bounding boxes as [south, north, west, east]")
+    bounding_boxes: List[List[float]] = Field(description="List of bounding boxes as [West,  South, East, North]")
     locations: List[str] = Field(description="List of location names corresponding to bounding boxes")
     start_date: str = Field(description="Start date for the analysis in YYYY-MM-DD format")
     end_date: str = Field(description="End date for the analysis in YYYY-MM-DD format")
@@ -47,8 +46,10 @@ def run_tool(config: UserParameters, args: ToolParameters) -> Any:
     def get_location_ids(bbox: List[float]) -> List[dict]:
         params = {"bbox": f"{bbox[0]},{bbox[1]},{bbox[2]},{bbox[3]}"}
         headers = {"X-API-Key": config.api_key}
+        print( f"DEBUG : \n params : {params}, \n headers : {headers}")
         response = requests.get(URL, headers=headers, params=params)
         response.raise_for_status()
+        print("Debug : Response Location Details : ", response.json())
         return response.json().get("results", [])
 
     def fetch_sensor_data(location_ids: List[int], start_date: datetime.date, end_date: datetime.date) -> pd.DataFrame:
@@ -95,7 +96,9 @@ def run_tool(config: UserParameters, args: ToolParameters) -> Any:
 
     all_data = []
     for bbox, location in zip(args.bounding_boxes, args.locations):
-        bbox_openaq_format = [bbox[1], bbox[0], bbox[3], bbox[2]]
+#        bbox_openaq_format = [bbox[1], bbox[0], bbox[3], bbox[2]]
+        bbox_openaq_format = [bbox[0], bbox[1], bbox[2], bbox[3]]                
+        print("DEBUG : OpenAQ bbox : ",bbox_openaq_format)
         location_data = get_location_ids(bbox_openaq_format)
         location_ids = [loc["id"] for loc in location_data]
 
