@@ -37,7 +37,7 @@ class AirQualityAnalysisTool(BaseTool):
             "name": "bounding_boxes",
             "type": "list[list[float]]",
             "description": (
-                "List of bounding boxes (each as [List of bounding boxes as [west,  south, east, north]]) to analyze air quality for."
+                "List of bounding boxes with each box as a List of coordinates [West,  South, East, North] to analyze air quality for."
             ),
             "required": True,
         },      
@@ -69,7 +69,7 @@ class AirQualityAnalysisTool(BaseTool):
     def _run(self, bounding_boxes: List[List[float]], locations: List[str], start_date: str, end_date: str, aq_parameters: Optional[List[str]] = None) -> pd.DataFrame:
         """
         Args:
-            bounding_boxes (list): List of bounding boxes as [List of bounding boxes as [West,  South, East, North].
+            bounding_boxes (list): List of bounding boxes each box is a list of coordinates [West,  South, East, North].
             locations (list): List of location names corresponding to bounding boxes.            
             start_date (str): Start date for the analysis in YYYY-MM-DD format.
             end_date (str): End date for the analysis in YYYY-MM-DD format.
@@ -195,7 +195,7 @@ tool = BoundingBoxExtractorTool()
 if __name__ == '__main__':
     # Example usage:
     analysis_tool = AirQualityAnalysisTool()
-    locations_to_analyze = [ "New Delhi"]
+    locations_to_analyze = [ "Sydney", "Singapore"]
     parameters_to_analyze=["pm25"]
     bboxes=[]
     for location in locations_to_analyze : 
