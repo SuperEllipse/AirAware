@@ -76,7 +76,7 @@ class AirQualityAnalysisTool(BaseTool):
             aq_parameters (list, optional): List of air quality parameters to filter. Defaults to None.
 
         Returns:
-            pd.DataFrame: Aggregated air quality data with columns [date, parameter, unit, value, location_name].
+            pd.DataFrame: Aggregated air quality data with columns [date, parameter, unit, value, location_name] .
         """
         
 
