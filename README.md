@@ -111,4 +111,4 @@ The analysis highlights distinct differences in air quality trends between New D
 - **New Delhi** experienced significantly higher PM2.5 levels with an alarming peak due to stagnant meteorological conditions (lower wind speeds).
 - **Chennai**, while having lower PM2.5 concentrations overall, also showed an upward trend in pollution levels which warrants further monitoring.
 
-Overall, this report underscores the critical need for continued air quality monitoring in conjunction with meteorological data to inform public health strategies and policy-making
+Overall, this report underscores the critical need for continued air quality monitoring in conjunction with meteorological data to inform public health strategies and policy-making.
