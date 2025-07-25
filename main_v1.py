@@ -47,24 +47,25 @@ class AirQualityAnalysisCrew:
             "weather_tool": HistoricalWeatherTool(),
         }
 
+# Note LAB WORK Begins here: Enter the details from the Lab Guide
     def _setup_agents(self):
         """Set up all agents."""
         # Step 1: Define agents individually
         input_parser_agent = Agent(
-            role="Input Data Parser",
-            goal="Parse user-provided natural language input into structured parameters required for air quality analysis.",
-            backstory="Efficient assistant for extracting structured information from user queries.",
+            role="", #Lab Work : Enter Details here from LAB Guide
+            goal="", #Lab Work : Enter Details here from LAB Guide
+            backstory="", #Lab Work : Enter Details here
             verbose=True,
             allow_delegation=False,
-            tools=[self.tools["input_parser_tool"]],
+            tools=[self.tools[""]], #Lab Work : Enter Details here
         )
         bounding_box_retriever = Agent(
-            role="Geospatial Data Specialist",
-            goal="Retrieve bounding box coordinates for the specified locations.",
-            backstory="Expert in geographical information retrieval and spatial data analysis.",
+            role="", #Lab Work : Enter Details here from LAB Guide
+            goal="", #Lab Work : Enter Details here from LAB Guide
+            backstory="", #Lab Work : Enter Details here from LAB Guide
             verbose=True,
             allow_delegation=False,
-            tools=[self.tools["bounding_box_extractor_tool"]],
+            tools=[self.tools[""]], #Lab Work : Enter Details here from LAB Guide
         )
         weather_data_integrator = Agent(
             role="Historical Weather Data Specialist",
