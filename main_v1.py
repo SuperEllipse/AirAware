@@ -105,17 +105,16 @@ class AirQualityAnalysisCrew:
         """Set up all tasks."""
         # Step 1: Define tasks individually
         parse_user_input_task = Task(
-            description=f"Parse the user input: {self.user_input}. Extract locations, start date, end date, and air quality parameters using the InputParserTool.",
-            agent=self.agents["input_parser_agent"],
+            description=f"", #Lab Work : Enter Details here from LAB Guide,
+            agent=self.agents[""], #Lab Work : Enter Details here from LAB Guide,
             expected_output=(
-                "A dictionary containing parsed 'locations', 'start_date', 'end_date', and 'aq_parameters' "
-                "from the user input."
+                "" #Lab Work : Enter Details here from LAB Guide,
             ),
         )
         get_bounding_boxes_task = Task(
-            description="For each of the following locations, use the 'bounding_box_extractor' tool to find their bounding box coordinates. Return the bounding boxes associated with each location.",
-            agent=self.agents["bounding_box_retriever"],
-            expected_output="A dictionary or list containing the bounding box coordinates (south, west, north, east) for each specified location.",
+            description="",#Lab Work : Enter Details here from LAB Guide,
+            agent=self.agents[""], #Lab Work : Enter Details here from LAB Guide,
+            expected_output="", #Lab Work : Enter Details here from LAB Guide,
             context=[parse_user_input_task],
         )
         get_weather_data_task = Task(
