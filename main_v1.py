@@ -81,7 +81,10 @@ class AirQualityAnalysisCrew:
             backstory="Specialized in accessing and retrieving air quality data.",
             verbose=True,
             allow_delegation=False,
-            tools=[self.tools["air_quality_tool"]],
+            tools=[
+                self.tools["bounding_box_extractor_tool"],
+                self.tools["air_quality_tool"]
+    ],
         )
         air_quality_analyst = Agent(
             role="Air Quality Analyst",

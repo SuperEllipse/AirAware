@@ -37,7 +37,7 @@ class AirQualityAnalysisTool(BaseTool):
             "name": "bounding_boxes",
             "type": "list[list[float]]",
             "description": (
-                "List of bounding boxes with each box as a List of coordinates [West,  South, East, North] to analyze air quality for."
+                "List of bounding boxes with each box as a List of coordinates each represented as a flat list of four float values  [West,  South, East, North] to analyze air quality. Example: [[-34.3, 150.0, -33.2, 151.5], [...]]"
             ),
             "required": True,
         },      

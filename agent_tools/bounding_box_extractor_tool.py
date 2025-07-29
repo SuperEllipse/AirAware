@@ -20,7 +20,11 @@ class BoundingBoxExtractorTool(BaseTool):
     """Tool to extract the bounding box coordinates (south, north, west, east) for a given location name using Nominatim."""
 
     name: str = "bounding_box_extractor"
-    description: str = "Extracts the bounding box coordinates (south, north, west, east) for a given location name."
+#    description: str = "Extracts the bounding box coordinates (south, north, west, east) for a given location name."
+    description: str = (
+        "Extracts the bounding box coordinates as a flat list of four float values "
+        "[south, west, north, east] for a given location name."
+    )
     parameters: Optional[list[dict]] = [
         {
             "name": "location",
