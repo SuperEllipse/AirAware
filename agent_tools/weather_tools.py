@@ -100,6 +100,7 @@ class HistoricalWeatherTool(BaseTool):
             return f"An unexpected error occurred: {e}"
         
 # Only for Testing
+# from bounding_box_extractor_tool import BoundingBoxExtractorTool
 # def main(location: str, start_date: str, end_date: str):
 #     """
 #     Main function to get the bounding box for a location and then fetch historical weather details.
@@ -128,14 +129,32 @@ class HistoricalWeatherTool(BaseTool):
 
 # if __name__ == "__main__":
 #     # Example usage:
-#     location_name = "Chennai"
-#     start = "2023-01-01"
-#     end = "2023-01-03"
+#     location_name = "Tokyo"
+#     start = "2025-01-01"
+#     end = "2025-01-03"
 #     main(location_name, start, end)
 
 #     print("\n" + "="*50 + "\n")
 
-#     location_name_2 = "London"
-#     start_2 = "2024-05-15"
-#     end_2 = "2024-05-17"
-#     main(location_name_2, start_2, end_2)
+#     location_name = "London"
+#     start = "2025-01-01"
+#     end = "2025-01-03"
+#     main(location_name, start, end)
+    
+#     print("\n" + "="*50 + "\n")
+
+#     location_name = "Frankfurt"
+#     start = "2025-01-01"
+#     end = "2025-01-03"
+#     main(location_name, start, end)
+    
+    
+#     location_name = "Chennai"
+#     start = "2025-01-01"
+#     end = "2025-01-03"
+#     main(location_name, start, end)
+    
+#     location_name = "New Delhi, India"
+#     start = "2025-01-01"
+#     end = "2025-01-03"
+#     main(location_name, start, end)
